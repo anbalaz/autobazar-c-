@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace autobazar.Enums
+﻿namespace autobazar.Enums
 {
     public enum CarType
     {
         Undefined = 0,
-        Fabia,
-        Octavia,
-        Superb,
-        Kodiaq,
-        Rapid,
-        Yeti
+        Fabia = 1,
+        Octavia = 2,
+        Superb = 3,
+        Kodiaq = 4,
+        Rapid = 5,
+        Yeti = 6
     }
 }

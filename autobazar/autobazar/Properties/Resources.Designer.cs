@@ -61,6 +61,24 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Did not find requested file, created new.
+        /// </summary>
+        internal static string AutobazarManager_RunTheAutobazar_ConnectionNewFile {
+            get {
+                return ResourceManager.GetString("AutobazarManager_RunTheAutobazar_ConnectionNewFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connection is Ok.
+        /// </summary>
+        internal static string AutobazarManager_RunTheAutobazar_ConnectionOk {
+            get {
+                return ResourceManager.GetString("AutobazarManager_RunTheAutobazar_ConnectionOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select Id of car which you want to delete or write exit to leave..
         /// </summary>
         internal static string AutobazarManager_RunTheAutobazar_DeleteWelcome {

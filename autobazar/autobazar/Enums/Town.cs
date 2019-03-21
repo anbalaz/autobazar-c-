@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace autobazar.Enums
+﻿namespace autobazar.Enums
 {
     public enum Town
     {
         Undefined = 0,
-        Zilina,
-        Bratislava,
-        Kosice,
-        Banska_Bystrica,
-        Povazska_Bystrica,
-        Trencin,
-        Martin,
-        Lucenec,
-        Humenne,
-        Presov,
-        Pezinok,
-        Trnava
+        Zilina = 1,
+        Bratislava = 2,
+        Kosice = 3,
+        Banska_Bystrica = 4,
+        Povazska_Bystrica = 5,
+        Trencin = 6,
+        Martin = 7,
+        Lucenec = 8,
+        Humenne = 9,
+        Presov = 10,
+        Pezinok = 11,
+        Trnava = 12
     }
 }

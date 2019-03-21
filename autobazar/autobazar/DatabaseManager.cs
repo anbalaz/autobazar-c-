@@ -100,8 +100,7 @@ namespace autobazar
                 }
                 else
                 {
-                    bool IsInputNumber = int.TryParse(userInput, out int parsedNumber);
-                    if (IsInputNumber && Enum.IsDefined(typeof(T), parsedNumber) && parsedNumber != 0)
+                    if (int.TryParse(userInput, out int parsedNumber) && Enum.IsDefined(typeof(T), parsedNumber) && parsedNumber != 0)
                     {
                         return (T)Enum.Parse(typeof(T), userInput, true);
                     }
@@ -189,7 +188,6 @@ namespace autobazar
                 Console.Write($"{updateTheProperty} current ({Enum.GetName(typeof(CarBrand), enumProperty)})\n");
                 string userInput = Console.ReadLine();
 
-
                 bool IsStringParsedToInt = int.TryParse(userInput, out int parsedInt);
                 if (IsStringParsedToInt && parsedInt >= 0 && parsedInt <= 1)
                 {
@@ -232,11 +230,11 @@ namespace autobazar
             return null;
         }
 
-        public void UpdateCarsToDb(String localDatabase, List<Car> carList)
+        public void UpdateCarsToDb(String localDatabase)
         {
             try
             {
-                File.WriteAllLines(localDatabase, GetListStringFromCarList(carList));
+                File.WriteAllLines(localDatabase, GetListStringFromCarList(_cars));
             }
             catch (FileNotFoundException e)
             {
@@ -259,7 +257,7 @@ namespace autobazar
                     break;
                 }
             }
-            UpdateCarsToDb(localDatabase, _cars);
+            UpdateCarsToDb(localDatabase);
         }
 
         public void ChangeInformationInDb(int numberID)
@@ -280,7 +278,14 @@ namespace autobazar
 
         public int GetNewId()
         {
-            return _cars.Max().ID + 1;
+            if (_cars.Count != 0)
+            {
+                return _cars.Max().ID + 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public Car FromStringToCar(string carString)
@@ -360,7 +365,7 @@ namespace autobazar
 
         public bool InsertNewCar(String localDatabase)
         {
-            int vintageNumber = ParseStringToInt(Resources.BazarManager_ParseStringToInt_Vintage, 1990, DateTime.Today.Year);
+            int vintageNumber = ParseStringToInt(Resources.BazarManager_ParseStringToInt_Vintage, 1900, DateTime.Today.Year);
             if (vintageNumber == -1)
             {
                 return false;
@@ -404,6 +409,7 @@ namespace autobazar
 
             Car car = new Car(GetNewId(), vintageNumber, kilometers, carBrandEnum, carTypeEnum, fuelEnum, price, townEnum, numberOfDoors, isCrashed);
             _cars.Add(car);
+            UpdateCarsToDb(localDatabase);
             return true;
         }
     }

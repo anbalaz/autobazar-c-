@@ -12,11 +12,11 @@ namespace autobazar
             DatabaseManager manager = new DatabaseManager();
             if (manager.ConnectToDb(route))
             {
-                Console.WriteLine("Connection is Ok");
+                Console.WriteLine(Resources.AutobazarManager_RunTheAutobazar_ConnectionOk);
             }
             else
             {
-                Console.WriteLine("Did not find requested file, created new");
+                Console.WriteLine(Resources.AutobazarManager_RunTheAutobazar_ConnectionNewFile);
             }
             manager.GetCarListFromDB(route);
             bool wishToExit = false;
