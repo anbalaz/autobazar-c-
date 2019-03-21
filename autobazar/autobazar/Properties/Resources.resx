@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AutobazarManager_RunTheAutobazar_CarNotInDb" xml:space="preserve">
-    <value>Car Id is not in the DataBase</value>
-  </data>
   <data name="AutobazarManager_RunTheAutobazar_ConnectionNewFile" xml:space="preserve">
     <value>Did not find requested file, created new</value>
   </data>
@@ -131,12 +128,6 @@
   </data>
   <data name="AutobazarManager_RunTheAutobazar_Goodbye" xml:space="preserve">
     <value>Goodbye</value>
-  </data>
-  <data name="AutobazarManager_RunTheAutobazar_NoSaveCar" xml:space="preserve">
-    <value>Car has not been saved</value>
-  </data>
-  <data name="AutobazarManager_RunTheAutobazar_SaveNewCar" xml:space="preserve">
-    <value>Car has been saved</value>
   </data>
   <data name="AutobazarManager_RunTheAutobazar_UpdateWelcome" xml:space="preserve">
     <value>Please select Id of car which you want to update or type exit to leave.</value>
@@ -150,46 +141,37 @@ To update information about car press 3.
 To exit press 4.</value>
   </data>
   <data name="BazarManager_ChangeCarProperty_CarBrand" xml:space="preserve">
-    <value>Do you wish to change the brand of car (current {0})? Yes: 0, No: 1
-</value>
+    <value>Do you wish to change the brand of car? Yes: 0, No: 1</value>
   </data>
   <data name="BazarManager_ChangeCarProperty_CarType" xml:space="preserve">
-    <value>Do you wish to change the type of car (current {0})? Yes: 0, No: 1
-</value>
+    <value>Do you wish to change the type of car? Yes: 0, No: 1</value>
   </data>
   <data name="BazarManager_ChangeCarProperty_Doors" xml:space="preserve">
-    <value>Do you wish to change number of doors (current {0})? Yes: 0, No: 1
-</value>
+    <value>Do you wish to change number of doors? Yes: 0, No: 1</value>
   </data>
   <data name="BazarManager_ChangeCarProperty_Fuel" xml:space="preserve">
-    <value>Do you wish to change the type of fuel (current {0})? Yes: 0, No: 1
-</value>
+    <value>Do you wish to change the type of fuel? Yes: 0, No: 1</value>
   </data>
   <data name="BazarManager_ChangeCarProperty_IsCarCrashed" xml:space="preserve">
-    <value>Do you wish to change if car was in an accident (current {0})? Yes: 0, No: 1
-</value>
+    <value>Do you wish to change if car was in an accident? Yes: 0, No: 1</value>
   </data>
   <data name="BazarManager_ChangeCarProperty_Kilometers" xml:space="preserve">
-    <value>Do you wish to change number of kilometers (current {0})? Yes: 0, No: 1
-</value>
+    <value>Do you wish to change number of kilometers? Yes: 0, No: 1</value>
   </data>
   <data name="BazarManager_ChangeCarProperty_Price" xml:space="preserve">
-    <value>Do you wish to change price (current {0})? Yes: 0, No: 1
-</value>
+    <value>Do you wish to change price? Yes: 0, No: 1</value>
   </data>
   <data name="BazarManager_ChangeCarProperty_Town" xml:space="preserve">
-    <value>Do you wish to change town for selling the car (current {0})? Yes: 0, No: 1
-</value>
+    <value>Do you wish to change town for selling the car? Yes: 0, No: 1</value>
   </data>
   <data name="BazarManager_ChangeCarProperty_Vintage" xml:space="preserve">
-    <value>Do you wish to change vintage (current {0})?  Yes: 0, No: 1
-</value>
+    <value>Do you wish to change vintage?  Yes: 0, No: 1</value>
   </data>
   <data name="BazarManager_ParseMethods_WrongInput" xml:space="preserve">
     <value>Wrong input, please try again</value>
   </data>
   <data name="BazarManager_ParseStringToBool_IsTheCrashed" xml:space="preserve">
-    <value>Has the car ever been in the accident? true: 1, false: 2</value>
+    <value>Has the car ever been in the accident? true: 0, false: 1 or type exit to leave.</value>
   </data>
   <data name="BazarManager_ParseStringToEnum_CarBrand" xml:space="preserve">
     <value>Please Insert Car Brand of your car or type exit to leave.</value>

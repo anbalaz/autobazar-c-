@@ -1,19 +1,11 @@
-﻿using autobazar.Enums;
-using autobazar.Properties;
-using System;
-using System.Collections.Generic;
-
-
-namespace autobazar
+﻿namespace autobazar
 {
     class Program
     {
         static void Main(string[] args)
         {
-            AutobazarManager bazar = new AutobazarManager("dbCars.txt");
-
+            AutobazarManager bazar = new AutobazarManager();
             bazar.RunTheAutobazar();
-            Console.ReadLine();
         }
     }
 }

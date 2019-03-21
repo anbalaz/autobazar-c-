@@ -57,7 +57,7 @@ namespace autobazar
             {
                 Console.WriteLine(settingAProperty);
                 string userInput = Console.ReadLine().ToLower();
-                if (userInput == Constants.ESCAPE_STRING)
+                if (userInput == "exit")
                 {
                     isExit = true;
                     continue;
@@ -83,7 +83,7 @@ namespace autobazar
         /// <summary>
         /// Insert introducing string of property you wish to set. Returns int that is parsed or 0 if user pressed exit.
         /// </summary>
-        private T ParseStringToEnum<T>(string settingAProperty)
+        public T ParseStringToEnum<T>(string settingAProperty)
         {
             bool isExit = false;
             while (!isExit)
@@ -91,11 +91,11 @@ namespace autobazar
                 int enumLength = Enum.GetValues(typeof(T)).Length;
                 for (int i = 1; i < enumLength; i++)
                 {
-                    Console.Write($"{Enum.GetName(typeof(T), i)}: {i};");
+                    Console.Write(Enum.GetName(typeof(T), i) + ": " + i + "; ");
                 }
                 Console.WriteLine($"\n{settingAProperty}");
                 string userInput = Console.ReadLine().ToLower();
-                if (userInput == Constants.ESCAPE_STRING)
+                if (userInput == "exit")
                 {
                     isExit = true;
                 }
@@ -115,7 +115,7 @@ namespace autobazar
             return default(T);
         }
 
-        private bool ParseStringToBool(string settingAProperty)
+        public bool ParseStringToBool(string settingAProperty)
         {
             bool isExit = false;
             while (!isExit)
@@ -142,7 +142,7 @@ namespace autobazar
             bool isExit = false;
             while (!isExit)
             {
-                Console.Write(updateTheProperty,intProperty);
+                Console.Write($"{updateTheProperty} current ({intProperty})\n");
                 string userInput = Console.ReadLine();
 
                 bool IsStringParsedToInt = int.TryParse(userInput, out int parsedInt);
@@ -164,7 +164,7 @@ namespace autobazar
             bool isExit = false;
             while (!isExit)
             {
-                Console.Write(updateTheProperty,boolProperty);
+                Console.Write($"{updateTheProperty} current ({boolProperty})\n");
                 string userInput = Console.ReadLine();
 
                 bool IsStringParsedToInt = int.TryParse(userInput, out int parsedInt);
@@ -186,7 +186,7 @@ namespace autobazar
             bool isExit = false;
             while (!isExit)
             {
-                Console.Write(updateTheProperty,Enum.GetName(typeof(T), enumProperty));
+                Console.Write($"{updateTheProperty} current ({Enum.GetName(typeof(T), enumProperty)})\n");
                 string userInput = Console.ReadLine();
 
                 bool IsStringParsedToInt = int.TryParse(userInput, out int parsedInt);
@@ -413,6 +413,10 @@ namespace autobazar
             _cars.Add(car);
             UpdateCarsToDb(localDatabase);
             return true;
+        }
+        public void AddCar(Car car)
+        {
+            _cars.Add(car);
         }
     }
 }
