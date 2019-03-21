@@ -5,8 +5,14 @@ namespace autobazar
 {
     public class AutobazarManager
     {
-        private static string Route = "dbCars.txt";
+        public readonly string Route; 
         private DatabaseManager _manager = new DatabaseManager();
+
+        public AutobazarManager(string route)
+        {
+            Route = route;
+        }
+
         public void RunTheAutobazar()
         {
 
@@ -31,6 +37,7 @@ namespace autobazar
                     switch (parsedByte)
                     {
                         case 0:
+                            //Show all cars in db
                             Console.Clear();
                             if (_manager.ShowAllCars() == null)
                             {
@@ -41,18 +48,20 @@ namespace autobazar
                             break;
 
                         case 1:
+                            //Inserting new car
                             Console.Clear();
                             if (_manager.InsertNewCar(Route))
                             {
-                                Console.WriteLine("Car has been saved");
+                                Console.WriteLine(Resources.AutobazarManager_RunTheAutobazar_SaveNewCar);
                             }
                             else
                             {
-                                Console.WriteLine("Car has not been saved");
+                                Console.WriteLine(Resources.AutobazarManager_RunTheAutobazar_NoSaveCar);
                             }
                             break;
 
                         case 2:
+                            //Delete car
                             Console.Clear();
                             bool wishToExitMenu = false;
                             while (!wishToExitMenu)
@@ -77,7 +86,7 @@ namespace autobazar
 
                                         if (car == null)
                                         {
-                                            Console.WriteLine("Car Id is not in the DataBase");
+                                            Console.WriteLine(Resources.AutobazarManager_RunTheAutobazar_CarNotInDb);
                                         }
                                         else
                                         {
@@ -90,6 +99,7 @@ namespace autobazar
                             break;
 
                         case 3:
+                            //Update existing car
                             Console.Clear();
                             bool wishToExitMenu2 = false;
 
@@ -115,7 +125,7 @@ namespace autobazar
 
                                         if (car == null)
                                         {
-                                            Console.WriteLine("Car Id is not in the DataBase");
+                                            Console.WriteLine(Resources.AutobazarManager_RunTheAutobazar_CarNotInDb);
                                         }
                                         else
                                         {
@@ -130,6 +140,7 @@ namespace autobazar
                             break;
                     }
                 }
+                //exit Autobazar
                 else if (parsedByte == 4)
                 {
                     Console.WriteLine(Resources.AutobazarManager_RunTheAutobazar_Goodbye);

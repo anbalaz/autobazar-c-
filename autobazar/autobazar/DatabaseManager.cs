@@ -57,7 +57,7 @@ namespace autobazar
             {
                 Console.WriteLine(settingAProperty);
                 string userInput = Console.ReadLine().ToLower();
-                if (userInput == "exit")
+                if (userInput == Constants.ESCAPE_STRING)
                 {
                     isExit = true;
                     continue;
@@ -91,11 +91,11 @@ namespace autobazar
                 int enumLength = Enum.GetValues(typeof(T)).Length;
                 for (int i = 1; i < enumLength; i++)
                 {
-                    Console.Write(Enum.GetName(typeof(T), i) + ": " + i + "; ");
+                    Console.Write($"{Enum.GetName(typeof(T), i)}: {i};");
                 }
                 Console.WriteLine($"\n{settingAProperty}");
                 string userInput = Console.ReadLine().ToLower();
-                if (userInput == "exit")
+                if (userInput == Constants.ESCAPE_STRING)
                 {
                     isExit = true;
                 }
@@ -142,7 +142,7 @@ namespace autobazar
             bool isExit = false;
             while (!isExit)
             {
-                Console.Write($"{updateTheProperty} current ({intProperty})\n");
+                Console.Write(updateTheProperty,intProperty);
                 string userInput = Console.ReadLine();
 
                 bool IsStringParsedToInt = int.TryParse(userInput, out int parsedInt);
@@ -164,7 +164,7 @@ namespace autobazar
             bool isExit = false;
             while (!isExit)
             {
-                Console.Write($"{updateTheProperty} current ({boolProperty})\n");
+                Console.Write(updateTheProperty,boolProperty);
                 string userInput = Console.ReadLine();
 
                 bool IsStringParsedToInt = int.TryParse(userInput, out int parsedInt);
@@ -186,7 +186,7 @@ namespace autobazar
             bool isExit = false;
             while (!isExit)
             {
-                Console.Write($"{updateTheProperty} current ({Enum.GetName(typeof(CarBrand), enumProperty)})\n");
+                Console.Write(updateTheProperty,Enum.GetName(typeof(T), enumProperty));
                 string userInput = Console.ReadLine();
 
                 bool IsStringParsedToInt = int.TryParse(userInput, out int parsedInt);
@@ -212,7 +212,7 @@ namespace autobazar
             car.Brand = ChangeCarProperty(car.Brand, Resources.BazarManager_ChangeCarProperty_CarBrand, Resources.BazarManager_ParseStringToEnum_CarBrand);
             car.Type = ChangeCarProperty(car.Type, Resources.BazarManager_ChangeCarProperty_CarType, Resources.BazarManager_ParseStringToEnum_CarType);
             car.TypeOfFuel = ChangeCarProperty(car.TypeOfFuel, Resources.BazarManager_ChangeCarProperty_Fuel, Resources.BazarManager_ParseStringToEnum_Fuel);
-            car.TownOfSelling = ChangeCarProperty(car.TownOfSelling, Resources.BazarManager_ChangeCarProperty_Fuel, Resources.BazarManager_ParseStringToEnum_Fuel);
+            car.TownOfSelling = ChangeCarProperty(car.TownOfSelling, Resources.BazarManager_ChangeCarProperty_Town, Resources.BazarManager_ParseStringToEnum_Town);
             car.IsCarCrashed = ChangeCarProperty(car.IsCarCrashed, Resources.BazarManager_ChangeCarProperty_IsCarCrashed, Resources.BazarManager_ParseStringToBool_IsTheCrashed);
 
             return car;

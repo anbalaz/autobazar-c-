@@ -61,6 +61,15 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Car Id is not in the DataBase.
+        /// </summary>
+        internal static string AutobazarManager_RunTheAutobazar_CarNotInDb {
+            get {
+                return ResourceManager.GetString("AutobazarManager_RunTheAutobazar_CarNotInDb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Did not find requested file, created new.
         /// </summary>
         internal static string AutobazarManager_RunTheAutobazar_ConnectionNewFile {
@@ -97,6 +106,24 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Car has not been saved.
+        /// </summary>
+        internal static string AutobazarManager_RunTheAutobazar_NoSaveCar {
+            get {
+                return ResourceManager.GetString("AutobazarManager_RunTheAutobazar_NoSaveCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car has been saved.
+        /// </summary>
+        internal static string AutobazarManager_RunTheAutobazar_SaveNewCar {
+            get {
+                return ResourceManager.GetString("AutobazarManager_RunTheAutobazar_SaveNewCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select Id of car which you want to update or type exit to leave..
         /// </summary>
         internal static string AutobazarManager_RunTheAutobazar_UpdateWelcome {
@@ -120,7 +147,8 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wish to change the brand of car? Yes: 0, No: 1.
+        ///   Looks up a localized string similar to Do you wish to change the brand of car (current {0})? Yes: 0, No: 1
+        ///.
         /// </summary>
         internal static string BazarManager_ChangeCarProperty_CarBrand {
             get {
@@ -129,7 +157,8 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wish to change the type of car? Yes: 0, No: 1.
+        ///   Looks up a localized string similar to Do you wish to change the type of car (current {0})? Yes: 0, No: 1
+        ///.
         /// </summary>
         internal static string BazarManager_ChangeCarProperty_CarType {
             get {
@@ -138,7 +167,8 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wish to change number of doors? Yes: 0, No: 1.
+        ///   Looks up a localized string similar to Do you wish to change number of doors (current {0})? Yes: 0, No: 1
+        ///.
         /// </summary>
         internal static string BazarManager_ChangeCarProperty_Doors {
             get {
@@ -147,7 +177,8 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wish to change the type of fuel? Yes: 0, No: 1.
+        ///   Looks up a localized string similar to Do you wish to change the type of fuel (current {0})? Yes: 0, No: 1
+        ///.
         /// </summary>
         internal static string BazarManager_ChangeCarProperty_Fuel {
             get {
@@ -156,7 +187,8 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wish to change if car was in an accident? Yes: 0, No: 1.
+        ///   Looks up a localized string similar to Do you wish to change if car was in an accident (current {0})? Yes: 0, No: 1
+        ///.
         /// </summary>
         internal static string BazarManager_ChangeCarProperty_IsCarCrashed {
             get {
@@ -165,7 +197,8 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wish to change number of kilometers? Yes: 0, No: 1.
+        ///   Looks up a localized string similar to Do you wish to change number of kilometers (current {0})? Yes: 0, No: 1
+        ///.
         /// </summary>
         internal static string BazarManager_ChangeCarProperty_Kilometers {
             get {
@@ -174,7 +207,8 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wish to change price? Yes: 0, No: 1.
+        ///   Looks up a localized string similar to Do you wish to change price (current {0})? Yes: 0, No: 1
+        ///.
         /// </summary>
         internal static string BazarManager_ChangeCarProperty_Price {
             get {
@@ -183,7 +217,8 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wish to change town for selling the car? Yes: 0, No: 1.
+        ///   Looks up a localized string similar to Do you wish to change town for selling the car (current {0})? Yes: 0, No: 1
+        ///.
         /// </summary>
         internal static string BazarManager_ChangeCarProperty_Town {
             get {
@@ -192,7 +227,8 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wish to change vintage?  Yes: 0, No: 1.
+        ///   Looks up a localized string similar to Do you wish to change vintage (current {0})?  Yes: 0, No: 1
+        ///.
         /// </summary>
         internal static string BazarManager_ChangeCarProperty_Vintage {
             get {

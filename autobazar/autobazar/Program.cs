@@ -10,7 +10,7 @@ namespace autobazar
     {
         static void Main(string[] args)
         {
-            AutobazarManager bazar = new AutobazarManager();
+            AutobazarManager bazar = new AutobazarManager("dbCars.txt");
 
             bazar.RunTheAutobazar();
             Console.ReadLine();
