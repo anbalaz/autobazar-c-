@@ -24,6 +24,9 @@ namespace autobazar
             }
         }
 
+        /// <summary>
+        /// Insert introducing string of property you wish to set. Returns int that is parsed or -1 if user pressed exit.
+        /// </summary>
         public int ParseStringToInt(string settingAProperty, int minValue, int maxValue)
         {
             bool isExit = false;
@@ -31,57 +34,60 @@ namespace autobazar
             {
                 Console.WriteLine(settingAProperty);
                 string userInput = Console.ReadLine();
-                //if (userInput == "exit")
-                //{
-                //    isExit = true;
-                //    continue;
-                //}
-                //else
-                //{
-                bool IsStringParsedToNumber = int.TryParse(userInput, out int parsedNumber);
-                if (IsStringParsedToNumber && parsedNumber >= minValue && parsedNumber <= maxValue)
+                if (userInput == "exit")
                 {
-                    return parsedNumber;
+                    isExit = true;
+                    continue;
                 }
                 else
                 {
-                    Console.WriteLine(Resources.BazarManager_ParseMethods_WrongInput);
-                    continue;
+                    bool IsStringParsedToNumber = int.TryParse(userInput, out int parsedNumber);
+                    if (IsStringParsedToNumber && parsedNumber >= minValue && parsedNumber <= maxValue)
+                    {
+                        return parsedNumber;
+                    }
+                    else
+                    {
+                        Console.WriteLine(Resources.BazarManager_ParseMethods_WrongInput);
+                        continue;
+                    }
                 }
-                //}
             }
             return -1;
         }
 
+        /// <summary>
+        /// Insert introducing string of property you wish to set. Returns int that is parsed or 0 if user pressed exit.
+        /// </summary>
         private T ParseStringToEnum<T>(string settingAProperty)
         {
             bool isExit = false;
             while (!isExit)
             {
                 int enumLength = Enum.GetValues(typeof(T)).Length;
-                for (int i = 0; i < enumLength; i++)
+                for (int i = 1; i < enumLength; i++)
                 {
                     Console.Write(Enum.GetName(typeof(T), i) + ": " + i + "; ");
                 }
                 Console.WriteLine($"\n{settingAProperty}");
                 string userInput = Console.ReadLine();
-                //if (userInput == "exit")
-                //{
-                //    isExit = true;
-                //}
-                //else
-                //{
-                bool IsInputNumber = int.TryParse(userInput, out int parsedNumber);
-                if (IsInputNumber && Enum.IsDefined(typeof(T), parsedNumber))
+                if (userInput == "exit")
                 {
-                    return (T)Enum.Parse(typeof(T), userInput, true);
+                    isExit = true;
                 }
                 else
                 {
-                    Console.WriteLine(Resources.BazarManager_ParseMethods_WrongInput);
-                    continue;
+                    bool IsInputNumber = int.TryParse(userInput, out int parsedNumber);
+                    if (IsInputNumber && Enum.IsDefined(typeof(T), parsedNumber) && parsedNumber != 0)
+                    {
+                        return (T)Enum.Parse(typeof(T), userInput, true);
+                    }
+                    else
+                    {
+                        Console.WriteLine(Resources.BazarManager_ParseMethods_WrongInput);
+                        continue;
+                    }
                 }
-                //}
             }
             return default(T);
         }
@@ -113,7 +119,7 @@ namespace autobazar
             bool isExit = false;
             while (!isExit)
             {
-                Console.Write($"{updateTheProperty}\n{intProperty}");
+                Console.Write($"{updateTheProperty} current ({intProperty})\n");
                 string userInput = Console.ReadLine();
 
                 bool IsStringParsedToInt = int.TryParse(userInput, out int parsedInt);
@@ -135,7 +141,7 @@ namespace autobazar
             bool isExit = false;
             while (!isExit)
             {
-                Console.Write($"{updateTheProperty}\n{nameof(boolProperty)}");
+                Console.Write($"{updateTheProperty} current ({boolProperty})\n");
                 string userInput = Console.ReadLine();
 
                 bool IsStringParsedToInt = int.TryParse(userInput, out int parsedInt);
@@ -157,7 +163,7 @@ namespace autobazar
             bool isExit = false;
             while (!isExit)
             {
-                Console.Write($"{updateTheProperty}\n{nameof(enumProperty)}");
+                Console.Write($"{updateTheProperty} current ({Enum.GetName(typeof(CarBrand), enumProperty)})\n");
                 string userInput = Console.ReadLine();
 
 
@@ -351,29 +357,53 @@ namespace autobazar
             return car;
         }
 
-        public void InsertNewCar(String localDatabase)
+        public bool InsertNewCar(String localDatabase)
         {
             int vintageNumber = ParseStringToInt(Resources.BazarManager_ParseStringToInt_Vintage, 1990, DateTime.Today.Year);
+            if (vintageNumber == -1)
+            {
+                return false;
+            }
             int kilometers = ParseStringToInt(Resources.BazarManager_ParseStringToInt_Kilometers, 0, 2000000);
+            if (kilometers == -1)
+            {
+                return false;
+            }
             int price = ParseStringToInt(Resources.BazarManager_ParseStringToInt_Price, 100, 2000000);
+            if (price == -1)
+            {
+                return false;
+            }
             int numberOfDoors = ParseStringToInt(Resources.BazarManager_ParseStringToInt_Doors, 0, 15);
+            if (numberOfDoors == -1)
+            {
+                return false;
+            }
             CarBrand carBrandEnum = ParseStringToEnum<CarBrand>(Resources.BazarManager_ParseStringToEnum_CarBrand);
+            if (carBrandEnum == 0)
+            {
+                return false;
+            }
             CarType carTypeEnum = ParseStringToEnum<CarType>(Resources.BazarManager_ParseStringToEnum_CarType);
+            if (carTypeEnum == 0)
+            {
+                return false;
+            }
             Fuel fuelEnum = ParseStringToEnum<Fuel>(Resources.BazarManager_ParseStringToEnum_Fuel);
+            if (fuelEnum == 0)
+            {
+                return false;
+            }
             Town townEnum = ParseStringToEnum<Town>(Resources.BazarManager_ParseStringToEnum_Town);
+            if (townEnum == 0)
+            {
+                return false;
+            }
             bool isCrashed = ParseStringToBool(Resources.BazarManager_ParseStringToBool_IsTheCrashed);
 
-            if (vintageNumber > -1 && kilometers > -1 && price > -1 && numberOfDoors > -1&& carBrandEnum!=0 && carTypeEnum != 0 && fuelEnum != 0 && townEnum != 0)
-            {
-                Car car = new Car(GetNewId(), vintageNumber, kilometers, carBrandEnum, carTypeEnum, fuelEnum, price, townEnum, numberOfDoors, isCrashed);
-                AddCarToList(localDatabase, car);
-                Console.WriteLine("The Car has been saved");
-
-            }
-            else
-            {
-                Console.WriteLine("The Car was not save");
-            }
+            Car car = new Car(GetNewId(), vintageNumber, kilometers, carBrandEnum, carTypeEnum, fuelEnum, price, townEnum, numberOfDoors, isCrashed);
+            AddCarToList(localDatabase, car);
+            return true;
         }
     }
 }

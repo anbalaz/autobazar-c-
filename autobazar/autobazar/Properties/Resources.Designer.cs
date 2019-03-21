@@ -19,7 +19,7 @@ namespace autobazar.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -79,7 +79,7 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select Id of car which you want to update or write exit to leave..
+        ///   Looks up a localized string similar to Please select Id of car which you want to update or type exit to leave..
         /// </summary>
         internal static string AutobazarManager_RunTheAutobazar_UpdateWelcome {
             get {
@@ -196,7 +196,7 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please Insert Car Brand of your car.
+        ///   Looks up a localized string similar to Please Insert Car Brand of your car or type exit to leave..
         /// </summary>
         internal static string BazarManager_ParseStringToEnum_CarBrand {
             get {
@@ -205,7 +205,7 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please Select Car Type.
+        ///   Looks up a localized string similar to Please Select Car Type or type exit to leave..
         /// </summary>
         internal static string BazarManager_ParseStringToEnum_CarType {
             get {
@@ -214,7 +214,7 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please Select Type Of Fuel.
+        ///   Looks up a localized string similar to Please Select Type Of Fuel or type exit to leave..
         /// </summary>
         internal static string BazarManager_ParseStringToEnum_Fuel {
             get {
@@ -223,7 +223,7 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select town where the car is going to be sell.
+        ///   Looks up a localized string similar to Please select town where the car is going to be sell or type exit to leave..
         /// </summary>
         internal static string BazarManager_ParseStringToEnum_Town {
             get {
@@ -232,7 +232,7 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please insert number of doors.
+        ///   Looks up a localized string similar to Please insert number of doors or type exit to leave..
         /// </summary>
         internal static string BazarManager_ParseStringToInt_Doors {
             get {
@@ -241,7 +241,7 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please Insert number kilometers your car was used.
+        ///   Looks up a localized string similar to Please Insert number kilometers your car was used or type exit to leave..
         /// </summary>
         internal static string BazarManager_ParseStringToInt_Kilometers {
             get {
@@ -250,7 +250,7 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please Insert Price.
+        ///   Looks up a localized string similar to Please Insert Price or type exit to leave..
         /// </summary>
         internal static string BazarManager_ParseStringToInt_Price {
             get {
@@ -259,7 +259,7 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please Insert number of Vintage.
+        ///   Looks up a localized string similar to Please Insert number of Vintage or type exit to leave..
         /// </summary>
         internal static string BazarManager_ParseStringToInt_Vintage {
             get {

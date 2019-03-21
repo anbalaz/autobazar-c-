@@ -124,7 +124,7 @@
     <value>Goodbye</value>
   </data>
   <data name="AutobazarManager_RunTheAutobazar_UpdateWelcome" xml:space="preserve">
-    <value>Please select Id of car which you want to update or write exit to leave.</value>
+    <value>Please select Id of car which you want to update or type exit to leave.</value>
   </data>
   <data name="AutobazarManager_RunTheAutobazar_Welcome" xml:space="preserve">
     <value>Welcome to Autobazar.{0}To see all cars press 0.{1}To add new car press 1.{2}To remove a car press 2.{3}To update information about car press 3.{4}To exit press 4.</value>
@@ -163,28 +163,28 @@
     <value>Has the car ever been in the accident? true: 1, false: 2</value>
   </data>
   <data name="BazarManager_ParseStringToEnum_CarBrand" xml:space="preserve">
-    <value>Please Insert Car Brand of your car</value>
+    <value>Please Insert Car Brand of your car or type exit to leave.</value>
   </data>
   <data name="BazarManager_ParseStringToEnum_CarType" xml:space="preserve">
-    <value>Please Select Car Type</value>
+    <value>Please Select Car Type or type exit to leave.</value>
   </data>
   <data name="BazarManager_ParseStringToEnum_Fuel" xml:space="preserve">
-    <value>Please Select Type Of Fuel</value>
+    <value>Please Select Type Of Fuel or type exit to leave.</value>
   </data>
   <data name="BazarManager_ParseStringToEnum_Town" xml:space="preserve">
-    <value>Please select town where the car is going to be sell</value>
+    <value>Please select town where the car is going to be sell or type exit to leave.</value>
   </data>
   <data name="BazarManager_ParseStringToInt_Doors" xml:space="preserve">
-    <value>Please insert number of doors</value>
+    <value>Please insert number of doors or type exit to leave.</value>
   </data>
   <data name="BazarManager_ParseStringToInt_Kilometers" xml:space="preserve">
-    <value>Please Insert number kilometers your car was used</value>
+    <value>Please Insert number kilometers your car was used or type exit to leave.</value>
   </data>
   <data name="BazarManager_ParseStringToInt_Price" xml:space="preserve">
-    <value>Please Insert Price</value>
+    <value>Please Insert Price or type exit to leave.</value>
   </data>
   <data name="BazarManager_ParseStringToInt_Vintage" xml:space="preserve">
-    <value>Please Insert number of Vintage</value>
+    <value>Please Insert number of Vintage or type exit to leave.</value>
   </data>
   <data name="BazarManager_ShowAllCars_EmptyDb" xml:space="preserve">
     <value>There are no cars in the database</value>

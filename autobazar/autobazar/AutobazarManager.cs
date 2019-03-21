@@ -30,7 +30,14 @@ namespace autobazar
 
                         case 1:
                             Console.Clear();
-                            manager.InsertNewCar(route);
+                            if (manager.InsertNewCar(route))
+                            {
+                                Console.WriteLine("Car has been saved");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Car has not been saved");
+                            }
                             break;
 
                         case 2:
