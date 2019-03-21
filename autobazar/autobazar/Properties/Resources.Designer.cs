@@ -19,7 +19,7 @@ namespace autobazar.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -106,7 +106,12 @@ namespace autobazar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to Autobazar.{0}To see all cars press 0.{1}To add new car press 1.{2}To remove a car press 2.{3}To update information about car press 3.{4}To exit press 4..
+        ///   Looks up a localized string similar to Welcome to Autobazar.
+        ///To see all cars press 0.
+        ///To add new car press 1.
+        ///To remove a car press 2.
+        ///To update information about car press 3.
+        ///To exit press 4..
         /// </summary>
         internal static string AutobazarManager_RunTheAutobazar_Welcome {
             get {

@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleManager.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="AutobazarManager.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="Enums\CarBrand.cs" />

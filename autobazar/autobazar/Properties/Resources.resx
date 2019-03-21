@@ -133,7 +133,12 @@
     <value>Please select Id of car which you want to update or type exit to leave.</value>
   </data>
   <data name="AutobazarManager_RunTheAutobazar_Welcome" xml:space="preserve">
-    <value>Welcome to Autobazar.{0}To see all cars press 0.{1}To add new car press 1.{2}To remove a car press 2.{3}To update information about car press 3.{4}To exit press 4.</value>
+    <value>Welcome to Autobazar.
+To see all cars press 0.
+To add new car press 1.
+To remove a car press 2.
+To update information about car press 3.
+To exit press 4.</value>
   </data>
   <data name="BazarManager_ChangeCarProperty_CarBrand" xml:space="preserve">
     <value>Do you wish to change the brand of car? Yes: 0, No: 1</value>

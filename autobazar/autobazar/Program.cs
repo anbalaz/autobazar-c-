@@ -10,25 +10,9 @@ namespace autobazar
     {
         static void Main(string[] args)
         {
+            AutobazarManager bazar = new AutobazarManager();
 
-            AutobazarManager.RunTheAutobazar();
-
-            //DatabaseManager file = new DatabaseManager();
-            //file.GetDatabase("dbCars.txt");
-            //file.InsertNewCar("dbCars.txt");
-            //file.DeleteCarFromDb("dbCars.txt",4);
-            //file.ShowAllCars("dbCars.txt");
-            //file.ChangeInformationInDb("dbCars.txt", 2);
-            //Console.WriteLine(file.ShowAllCars("dbCars.txt"));
-
-
-
-            //Console.WriteLine(file.ShowAllCars("dbCars.txt"));
-            //Console.WriteLine(file.GetStringOfCarById("dbCars.txt", 8));
-            //file.FromStringToCar(file.GetStringOfCarById("dbCars.txt", 8));
-
-
-
+            bazar.RunTheAutobazar();
             Console.ReadLine();
         }
     }

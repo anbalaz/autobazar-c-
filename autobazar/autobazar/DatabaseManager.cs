@@ -56,7 +56,7 @@ namespace autobazar
             while (!isExit)
             {
                 Console.WriteLine(settingAProperty);
-                string userInput = Console.ReadLine();
+                string userInput = Console.ReadLine().ToLower();
                 if (userInput == "exit")
                 {
                     isExit = true;
@@ -79,6 +79,7 @@ namespace autobazar
             return -1;
         }
 
+
         /// <summary>
         /// Insert introducing string of property you wish to set. Returns int that is parsed or 0 if user pressed exit.
         /// </summary>
@@ -93,7 +94,7 @@ namespace autobazar
                     Console.Write(Enum.GetName(typeof(T), i) + ": " + i + "; ");
                 }
                 Console.WriteLine($"\n{settingAProperty}");
-                string userInput = Console.ReadLine();
+                string userInput = Console.ReadLine().ToLower();
                 if (userInput == "exit")
                 {
                     isExit = true;
@@ -248,7 +249,6 @@ namespace autobazar
 
         public void DeleteCarFromDbByID(String localDatabase, Car car)
         {
-            //_cars = _cars.Where(carInList => Convert.ToInt32(car.Substring(0, car.IndexOf('\t'))) != numberID).ToList();
             for (int i = 0; i < _cars.Count; i++)
             {
                 if (car.ID == _cars[i].ID)
@@ -273,14 +273,14 @@ namespace autobazar
                 _cars.ForEach(car => cars += car.ToString() + "\n");
                 return cars;
             }
-            return Resources.BazarManager_ShowAllCars_EmptyDb;
+            return null;
         }
 
         public int GetNewId()
         {
             if (_cars.Count != 0)
             {
-                return _cars.Max().ID + 1;
+                return _cars.Max(car => car.ID) + 1;
             }
             else
             {
@@ -292,77 +292,79 @@ namespace autobazar
         {
             try
             {
-                string[] properties = carString.Split('\t');
-                // string to int
-                bool isStringConvertedToInt = Int32.TryParse(properties[0], out int id);
-                if (!isStringConvertedToInt)
+                while (true)
                 {
-                    Console.WriteLine("The File or data are corrupted");
-                }
-                // string to short
+                    string[] properties = carString.Split(Constants.DATA_SEPARATOR);
+                    // string to int
+                    bool isStringConvertedToInt = Int32.TryParse(properties[0], out int id);
+                    if (!isStringConvertedToInt)
+                    {
+                        break;
+                    }
+                    // string to short
 
-                bool isStringConvertedToShort = int.TryParse(properties[1], out int vintage);
-                if (!isStringConvertedToInt)
-                {
-                    Console.WriteLine("The File or data are corrupted");
+                    bool isStringConvertedToShort = int.TryParse(properties[1], out int vintage);
+                    if (!isStringConvertedToInt)
+                    {
+                        break;
+                    }
+                    // string to int
+                    bool isStringConvertedToInt1 = int.TryParse(properties[2], out int kilometers);
+                    if (!isStringConvertedToInt1)
+                    {
+                        break;
+                    }
+                    // string to Enum
+                    bool isStringConvertedToEnum = Enum.TryParse(properties[3], out CarBrand carBrand);
+                    if (!isStringConvertedToEnum)
+                    {
+                        break;
+                    }
+                    // string to Enum
+                    bool isStringConvertedToEnum1 = Enum.TryParse(properties[4], out CarType carType);
+                    if (!isStringConvertedToEnum1)
+                    {
+                        break;
+                    }
+                    // string to Enum
+                    bool isStringConvertedToEnum2 = Enum.TryParse(properties[5], out Fuel fuel);
+                    if (!isStringConvertedToEnum2)
+                    {
+                        break;
+                    }
+                    // string to decimal
+                    bool isStringConvertedToDecimal = int.TryParse(properties[6], out int price);
+                    if (!isStringConvertedToDecimal)
+                    {
+                        break;
+                    }
+                    // string to Enum
+                    bool isStringConvertedToEnum3 = Enum.TryParse(properties[7], out Town town);
+                    if (!isStringConvertedToEnum3)
+                    {
+                        break;
+                    }
+                    // string to int
+                    bool isStringConvertedToInt2 = int.TryParse(properties[8], out int doors);
+                    if (!isStringConvertedToInt2)
+                    {
+                        break;
+                    }
+                    // string to bool
+                    bool isStringConvertedToBool = bool.TryParse(properties[9], out bool isCarCrashed);
+                    if (!isStringConvertedToBool)
+                    {
+                        break;
+                    }
+                    return new Car(id, vintage, kilometers, carBrand, carType, fuel, price, town, doors, isCarCrashed);
                 }
-                // string to int
-                bool isStringConvertedToInt1 = int.TryParse(properties[2], out int kilometers);
-                if (!isStringConvertedToInt1)
-                {
-                    Console.WriteLine("The File or data are corrupted");
-                }
-                // string to Enum
-                bool isStringConvertedToEnum = Enum.TryParse(properties[3], out CarBrand carBrand);
-                if (!isStringConvertedToEnum)
-                {
-                    Console.WriteLine("The File or data are corrupted");
-                }
-                // string to Enum
-                bool isStringConvertedToEnum1 = Enum.TryParse(properties[4], out CarType carType);
-                if (!isStringConvertedToEnum1)
-                {
-                    Console.WriteLine("The File or data are corrupted");
-                }
-                // string to Enum
-                bool isStringConvertedToEnum2 = Enum.TryParse(properties[5], out Fuel fuel);
-                if (!isStringConvertedToEnum2)
-                {
-                    Console.WriteLine("The File or data are corrupted");
-                }
-                // string to decimal
-                bool isStringConvertedToDecimal = int.TryParse(properties[6], out int price);
-                if (!isStringConvertedToDecimal)
-                {
-                    Console.WriteLine("The File or data are corrupted");
-                }
-                // string to Enum
-                bool isStringConvertedToEnum3 = Enum.TryParse(properties[7], out Town town);
-                if (!isStringConvertedToEnum3)
-                {
-                    Console.WriteLine("The File or data are corrupted");
-                }
-                // string to int
-                bool isStringConvertedToInt2 = int.TryParse(properties[8], out int doors);
-                if (!isStringConvertedToInt2)
-                {
-                    Console.WriteLine("The File or data are corrupted");
-                }
-                // string to bool
-                bool isStringConvertedToBool = bool.TryParse(properties[9], out bool isCarCrashed);
-                if (!isStringConvertedToBool)
-                {
-                    Console.WriteLine("The File or data are corrupted");
-                }
-                return new Car(id, vintage, kilometers, carBrand, carType, fuel, price, town, doors, isCarCrashed);
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine($"Can't parse data ;{e.Message}");
+                Console.WriteLine($"Can't parse data :{e.Message}");
             }
             return null;
         }
-
         public bool InsertNewCar(String localDatabase)
         {
             int vintageNumber = ParseStringToInt(Resources.BazarManager_ParseStringToInt_Vintage, 1900, DateTime.Today.Year);

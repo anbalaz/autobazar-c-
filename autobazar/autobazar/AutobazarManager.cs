@@ -5,12 +5,12 @@ namespace autobazar
 {
     public class AutobazarManager
     {
-        private static string route = "dbCars.txt";
-
-        public static void RunTheAutobazar()
+        private static string Route = "dbCars.txt";
+        private DatabaseManager _manager = new DatabaseManager();
+        public void RunTheAutobazar()
         {
-            DatabaseManager manager = new DatabaseManager();
-            if (manager.ConnectToDb(route))
+
+            if (_manager.ConnectToDb(Route))
             {
                 Console.WriteLine(Resources.AutobazarManager_RunTheAutobazar_ConnectionOk);
             }
@@ -18,12 +18,12 @@ namespace autobazar
             {
                 Console.WriteLine(Resources.AutobazarManager_RunTheAutobazar_ConnectionNewFile);
             }
-            manager.GetCarListFromDB(route);
+            _manager.GetCarListFromDB(Route);
             bool wishToExit = false;
 
             while (!wishToExit)
             {
-                Console.WriteLine(Resources.AutobazarManager_RunTheAutobazar_Welcome, "\n", "\n", "\n", "\n", "\n");
+                Console.WriteLine(Resources.AutobazarManager_RunTheAutobazar_Welcome);
                 string userInput = Console.ReadLine();
                 bool isTheInputCorrect = byte.TryParse(userInput, out byte parsedByte);
                 if (isTheInputCorrect && parsedByte >= 0 && parsedByte <= 3)
@@ -32,12 +32,17 @@ namespace autobazar
                     {
                         case 0:
                             Console.Clear();
-                            Console.WriteLine(manager.ShowAllCars());
+                            if (_manager.ShowAllCars() == null)
+                            {
+                                Console.WriteLine(Resources.BazarManager_ShowAllCars_EmptyDb);
+                                break;
+                            }
+                            Console.WriteLine(_manager.ShowAllCars());
                             break;
 
                         case 1:
                             Console.Clear();
-                            if (manager.InsertNewCar(route))
+                            if (_manager.InsertNewCar(Route))
                             {
                                 Console.WriteLine("Car has been saved");
                             }
@@ -52,14 +57,15 @@ namespace autobazar
                             bool wishToExitMenu = false;
                             while (!wishToExitMenu)
                             {
-                                Console.WriteLine(manager.ShowAllCars());
-                                if (manager.ShowAllCars().Equals(Resources.BazarManager_ShowAllCars_EmptyDb))
+                                Console.WriteLine(_manager.ShowAllCars());
+                                if (_manager.ShowAllCars() == null)
                                 {
+                                    Console.WriteLine(Resources.BazarManager_ShowAllCars_EmptyDb);
                                     wishToExitMenu = true;
                                 }
                                 else
                                 {
-                                    int parsedInt = manager.ParseStringToInt(Resources.AutobazarManager_RunTheAutobazar_DeleteWelcome, 0, manager.GetNewId());
+                                    int parsedInt = _manager.ParseStringToInt(Resources.AutobazarManager_RunTheAutobazar_DeleteWelcome, 0, _manager.GetNewId());
                                     if (parsedInt == -1)
                                     {
                                         Console.Clear();
@@ -67,7 +73,7 @@ namespace autobazar
                                     }
                                     else
                                     {
-                                        Car car = manager.GetCarById(parsedInt);
+                                        Car car = _manager.GetCarById(parsedInt);
 
                                         if (car == null)
                                         {
@@ -75,7 +81,7 @@ namespace autobazar
                                         }
                                         else
                                         {
-                                            manager.DeleteCarFromDbByID(route, car);
+                                            _manager.DeleteCarFromDbByID(Route, car);
                                             wishToExitMenu = true;
                                         }
                                     }
@@ -83,20 +89,21 @@ namespace autobazar
                             }
                             break;
 
-                        default:
+                        case 3:
                             Console.Clear();
                             bool wishToExitMenu2 = false;
 
                             while (!wishToExitMenu2)
                             {
-                                Console.WriteLine(manager.ShowAllCars());
-                                if (manager.ShowAllCars().Equals(Resources.BazarManager_ShowAllCars_EmptyDb))
+                                Console.WriteLine(_manager.ShowAllCars());
+                                if (_manager.ShowAllCars() == null)
                                 {
+                                    Console.WriteLine(Resources.BazarManager_ShowAllCars_EmptyDb);
                                     wishToExitMenu2 = true;
                                 }
                                 else
                                 {
-                                    int parsedInt = manager.ParseStringToInt(Resources.AutobazarManager_RunTheAutobazar_UpdateWelcome, 0, manager.GetNewId());
+                                    int parsedInt = _manager.ParseStringToInt(Resources.AutobazarManager_RunTheAutobazar_UpdateWelcome, 0, _manager.GetNewId());
                                     if (parsedInt == -1)
                                     {
                                         Console.Clear();
@@ -104,7 +111,7 @@ namespace autobazar
                                     }
                                     else
                                     {
-                                        Car car = manager.GetCarById(parsedInt);
+                                        Car car = _manager.GetCarById(parsedInt);
 
                                         if (car == null)
                                         {
@@ -112,12 +119,14 @@ namespace autobazar
                                         }
                                         else
                                         {
-                                            manager.ChangeInformationInDb(parsedInt);
+                                            _manager.ChangeInformationInDb(parsedInt);
                                             wishToExitMenu2 = true;
                                         }
                                     }
                                 }
                             }
+                            break;
+                        default:
                             break;
                     }
                 }
