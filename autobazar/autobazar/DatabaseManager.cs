@@ -9,19 +9,42 @@ namespace autobazar
 {
     public class DatabaseManager
     {
-        private static List<string> _cars = new List<string>();
+        private static List<Car> _cars = new List<Car>();
 
-        private List<string> GetDb(String localDatabase)
+        public void GetCarListFromDB(String localDatabase)
         {
-            return File.ReadAllLines(localDatabase).ToList();
+            try
+            {
+                foreach (var item in File.ReadAllLines(localDatabase))
+                {
+                    _cars.Add(FromStringToCar(item));
+                }
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
-        private void CheckIfFileExists(String localDatabase)
+        private List<string> GetListStringFromCarList(List<Car> listOfCars)
+        {
+            List<string> stringOfCars = new List<string>();
+            listOfCars.ForEach(car => stringOfCars.Add(car.ToString()));
+            return stringOfCars;
+        }
+
+        public bool ConnectToDb(String localDatabase)
         {
             if (!File.Exists(localDatabase))
             {
                 File.Create(localDatabase).Close();
+                return false;
             }
+            return true;
         }
 
         /// <summary>
@@ -196,74 +219,60 @@ namespace autobazar
             return car;
         }
 
-        public void PopulateCarList(String localDatabase)
+        public Car GetCarById(int numberID)
         {
-            _cars = GetDb(localDatabase);
-        }
 
-        public String GetStringOfCarById(int numberID)
-        {
-            String carString = String.Empty;
             for (int i = 0; i < _cars.Count; i++)
             {
-                if (numberID == Convert.ToInt32(_cars[i].Substring(0, _cars[i].IndexOf('\t'))))
+                if (numberID == _cars[i].ID)
                 {
                     return _cars[i];
                 }
             }
-            return carString;
+            return null;
         }
 
-        public void AddCarToList(String localDatabase, Car car)
+        public void UpdateCarsToDb(String localDatabase, List<Car> carList)
         {
-            _cars.Add(car.ToString());
-            File.WriteAllLines(localDatabase, _cars);
+            try
+            {
+                File.WriteAllLines(localDatabase, GetListStringFromCarList(carList));
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
-        public void DeleteCarFromDbbyID(String localDatabase, string carString)
+        public void DeleteCarFromDbByID(String localDatabase, Car car)
         {
-            int numberID = Convert.ToInt32(carString.Substring(0, carString.IndexOf('\t')));
-            _cars = GetDb(localDatabase);
-
-            _cars = _cars.Where(car => Convert.ToInt32(car.Substring(0, car.IndexOf('\t'))) != numberID).ToList();
-
+            //_cars = _cars.Where(carInList => Convert.ToInt32(car.Substring(0, car.IndexOf('\t'))) != numberID).ToList();
             for (int i = 0; i < _cars.Count; i++)
             {
-                if (numberID == Convert.ToInt32(_cars[i].Substring(0, _cars[i].IndexOf('\t'))))
+                if (car.ID == _cars[i].ID)
                 {
                     _cars.Remove(_cars[i]);
                     break;
                 }
             }
-            //_cars.Remove(_cars[])
-            Console.WriteLine();
-            File.WriteAllLines(localDatabase, _cars);
+            UpdateCarsToDb(localDatabase, _cars);
         }
 
         public void ChangeInformationInDb(int numberID)
         {
-            string carString = GetStringOfCarById(numberID);
-
-            Console.WriteLine($"Car you selected is: \n{carString}");
-
-            Car updatedCar = ChangeInformationInCar(FromStringToCar(carString));
-
-            for (int i = 0; i < _cars.Count; i++)
-            {
-                if (updatedCar.ID == Convert.ToInt32(_cars[i].Substring(0, _cars[i].IndexOf('\t'))))
-                {
-                    _cars[i] = updatedCar.ToString();
-                }
-            }
+            Car updateCar = ChangeInformationInCar(GetCarById(numberID));
         }
 
         public String ShowAllCars()
         {
-
             if (_cars.Count != 0)
             {
                 string cars = string.Empty;
-                _cars.ForEach(car => cars += car + "\n");
+                _cars.ForEach(car => cars += car.ToString() + "\n");
                 return cars;
             }
             return Resources.BazarManager_ShowAllCars_EmptyDb;
@@ -271,90 +280,82 @@ namespace autobazar
 
         public int GetNewId()
         {
-            List<int> idList = new List<int>();
-            if (_cars.Count != 0)
-            {
-                _cars.ForEach(car => idList.Add(Convert.ToInt32(car.Substring(0, car.IndexOf('\t')))));
-            }
-            else
-            {
-                return 0;
-            }
-            return idList.Max() + 1;
+            return _cars.Max().ID + 1;
         }
 
         public Car FromStringToCar(string carString)
         {
-            string[] properties = carString.Split('\t');
-            // string to int
-            bool isStringConvertedToInt = Int32.TryParse(properties[0], out int id);
-            if (!isStringConvertedToInt)
+            try
+            {
+                string[] properties = carString.Split('\t');
+                // string to int
+                bool isStringConvertedToInt = Int32.TryParse(properties[0], out int id);
+                if (!isStringConvertedToInt)
+                {
+                    Console.WriteLine("The File or data are corrupted");
+                }
+                // string to short
 
-            {
-                Console.WriteLine("The File or data are corrupted");
+                bool isStringConvertedToShort = int.TryParse(properties[1], out int vintage);
+                if (!isStringConvertedToInt)
+                {
+                    Console.WriteLine("The File or data are corrupted");
+                }
+                // string to int
+                bool isStringConvertedToInt1 = int.TryParse(properties[2], out int kilometers);
+                if (!isStringConvertedToInt1)
+                {
+                    Console.WriteLine("The File or data are corrupted");
+                }
+                // string to Enum
+                bool isStringConvertedToEnum = Enum.TryParse(properties[3], out CarBrand carBrand);
+                if (!isStringConvertedToEnum)
+                {
+                    Console.WriteLine("The File or data are corrupted");
+                }
+                // string to Enum
+                bool isStringConvertedToEnum1 = Enum.TryParse(properties[4], out CarType carType);
+                if (!isStringConvertedToEnum1)
+                {
+                    Console.WriteLine("The File or data are corrupted");
+                }
+                // string to Enum
+                bool isStringConvertedToEnum2 = Enum.TryParse(properties[5], out Fuel fuel);
+                if (!isStringConvertedToEnum2)
+                {
+                    Console.WriteLine("The File or data are corrupted");
+                }
+                // string to decimal
+                bool isStringConvertedToDecimal = int.TryParse(properties[6], out int price);
+                if (!isStringConvertedToDecimal)
+                {
+                    Console.WriteLine("The File or data are corrupted");
+                }
+                // string to Enum
+                bool isStringConvertedToEnum3 = Enum.TryParse(properties[7], out Town town);
+                if (!isStringConvertedToEnum3)
+                {
+                    Console.WriteLine("The File or data are corrupted");
+                }
+                // string to int
+                bool isStringConvertedToInt2 = int.TryParse(properties[8], out int doors);
+                if (!isStringConvertedToInt2)
+                {
+                    Console.WriteLine("The File or data are corrupted");
+                }
+                // string to bool
+                bool isStringConvertedToBool = bool.TryParse(properties[9], out bool isCarCrashed);
+                if (!isStringConvertedToBool)
+                {
+                    Console.WriteLine("The File or data are corrupted");
+                }
+                return new Car(id, vintage, kilometers, carBrand, carType, fuel, price, town, doors, isCarCrashed);
             }
-            // string to short
-
-            bool isStringConvertedToShort = int.TryParse(properties[1], out int vintage);
-            if (!isStringConvertedToInt)
+            catch (ArgumentException e)
             {
-                Console.WriteLine("The File or data are corrupted");
+                Console.WriteLine($"Can't parse data ;{e.Message}");
             }
-
-            // string to int
-            bool isStringConvertedToInt1 = int.TryParse(properties[2], out int kilometers);
-            if (!isStringConvertedToInt1)
-
-            {
-                Console.WriteLine("The File or data are corrupted");
-            }
-            // string to Enum
-            bool isStringConvertedToEnum = Enum.TryParse(properties[3], out CarBrand carBrand);
-            if (!isStringConvertedToEnum)
-            {
-                Console.WriteLine("The File or data are corrupted");
-            }
-            // string to Enum
-            bool isStringConvertedToEnum1 = Enum.TryParse(properties[4], out CarType carType);
-            if (!isStringConvertedToEnum1)
-            {
-                Console.WriteLine("The File or data are corrupted");
-            }
-            // string to Enum
-            bool isStringConvertedToEnum2 = Enum.TryParse(properties[5], out Fuel fuel);
-            if (!isStringConvertedToEnum2)
-            {
-                Console.WriteLine("The File or data are corrupted");
-            }
-            // string to decimal
-            bool isStringConvertedToDecimal = int.TryParse(properties[6], out int price);
-            if (!isStringConvertedToDecimal)
-            {
-                Console.WriteLine("The File or data are corrupted");
-            }
-            // string to Enum
-            bool isStringConvertedToEnum3 = Enum.TryParse(properties[7], out Town town);
-            if (!isStringConvertedToEnum3)
-            {
-                Console.WriteLine("The File or data are corrupted");
-            }
-            // string to int
-            bool isStringConvertedToInt2 = int.TryParse(properties[8], out int doors);
-            if (!isStringConvertedToInt2)
-
-            {
-                Console.WriteLine("The File or data are corrupted");
-            }
-            // string to bool
-            bool isStringConvertedToBool = bool.TryParse(properties[9], out bool isCarCrashed);
-            if (!isStringConvertedToBool)
-
-            {
-                Console.WriteLine("The File or data are corrupted");
-            }
-
-            Car car = new Car(id, vintage, kilometers, carBrand, carType, fuel, price, town, doors, isCarCrashed);
-            return car;
+            return null;
         }
 
         public bool InsertNewCar(String localDatabase)
@@ -402,7 +403,7 @@ namespace autobazar
             bool isCrashed = ParseStringToBool(Resources.BazarManager_ParseStringToBool_IsTheCrashed);
 
             Car car = new Car(GetNewId(), vintageNumber, kilometers, carBrandEnum, carTypeEnum, fuelEnum, price, townEnum, numberOfDoors, isCrashed);
-            AddCarToList(localDatabase, car);
+            _cars.Add(car);
             return true;
         }
     }

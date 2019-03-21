@@ -48,5 +48,9 @@ namespace autobazar
             NumberOfDoors = numberOfDoors;
             IsCarCrashed = isCarCrashed;
         }
+        public Car()
+        {
+
+        }
     }
 }

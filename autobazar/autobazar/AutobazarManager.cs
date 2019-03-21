@@ -10,7 +10,15 @@ namespace autobazar
         public static void RunTheAutobazar()
         {
             DatabaseManager manager = new DatabaseManager();
-            manager.PopulateCarList(route);
+            if (manager.ConnectToDb(route))
+            {
+                Console.WriteLine("Connection is Ok");
+            }
+            else
+            {
+                Console.WriteLine("Did not find requested file, created new");
+            }
+            manager.GetCarListFromDB(route);
             bool wishToExit = false;
 
             while (!wishToExit)
@@ -20,7 +28,6 @@ namespace autobazar
                 bool isTheInputCorrect = byte.TryParse(userInput, out byte parsedByte);
                 if (isTheInputCorrect && parsedByte >= 0 && parsedByte <= 3)
                 {
-
                     switch (parsedByte)
                     {
                         case 0:
@@ -60,22 +67,22 @@ namespace autobazar
                                     }
                                     else
                                     {
-                                        string carString = manager.GetStringOfCarById(parsedInt);
+                                        Car car = manager.GetCarById(parsedInt);
 
-                                        if (carString == String.Empty)
+                                        if (car == null)
                                         {
                                             Console.WriteLine("Car Id is not in the DataBase");
                                         }
                                         else
                                         {
-                                            manager.DeleteCarFromDbbyID(route, carString);
+                                            manager.DeleteCarFromDbByID(route, car);
                                             wishToExitMenu = true;
                                         }
                                     }
                                 }
                             }
-
                             break;
+
                         default:
                             Console.Clear();
                             bool wishToExitMenu2 = false;
@@ -97,9 +104,9 @@ namespace autobazar
                                     }
                                     else
                                     {
-                                        string carString = manager.GetStringOfCarById(parsedInt);
+                                        Car car = manager.GetCarById(parsedInt);
 
-                                        if (carString == String.Empty)
+                                        if (car == null)
                                         {
                                             Console.WriteLine("Car Id is not in the DataBase");
                                         }
@@ -126,7 +133,6 @@ namespace autobazar
                     Console.WriteLine($"{Resources.BazarManager_ParseMethods_WrongInput}\n");
                 }
             }
-
         }
     }
 }
