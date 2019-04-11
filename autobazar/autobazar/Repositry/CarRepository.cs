@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using autobazar.Enums;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace autobazar.Repositry
@@ -25,11 +26,11 @@ namespace autobazar.Repositry
                                 cars.Add(reader.GetInt32(0));
                                 cars.Add(reader.GetInt32(1));
                                 cars.Add(reader.GetInt32(2));
-                                cars.Add(reader.GetInt32(3));
-                                cars.Add(reader.GetInt32(4));
-                                cars.Add(reader.GetInt32(5));
+                                cars.Add(EnumReader.ParseIntToEnum<CarBrand>(reader.GetInt32(3)));
+                                cars.Add(EnumReader.ParseIntToEnum<CarType>(reader.GetInt32(4)));
+                                cars.Add(EnumReader.ParseIntToEnum<Fuel>(reader.GetInt32(5)));
                                 cars.Add(reader.GetInt32(6));
-                                cars.Add(reader.GetInt32(7));
+                                cars.Add(EnumReader.ParseIntToEnum<Town>(reader.GetInt32(7)));
                                 cars.Add(reader.GetInt32(8));
                                 cars.Add(reader.GetBoolean(9));
                                 cars.Add("---------------");

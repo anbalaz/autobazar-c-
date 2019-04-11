@@ -61,6 +61,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Repositry\CarTypeRepository.cs" />
+    <Compile Include="EnumReader.cs" />
     <Compile Include="Repositry\FuelRepository.cs" />
     <Compile Include="Repositry\IRepository.cs" />
     <Compile Include="Repositry\TownRepository.cs" />
