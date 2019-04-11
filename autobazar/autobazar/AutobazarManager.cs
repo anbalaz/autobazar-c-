@@ -130,6 +130,7 @@ namespace autobazar
                                         else
                                         {
                                             _manager.ChangeInformationInDb(parsedInt);
+
                                             wishToExitMenu2 = true;
                                         }
                                     }

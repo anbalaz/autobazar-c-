@@ -260,9 +260,10 @@ namespace autobazar
             UpdateCarsToDb(localDatabase);
         }
 
-        public void ChangeInformationInDb(int numberID)
+        public void ChangeInformationInDb(int numberID, string localDatabase)
         {
             Car updateCar = ChangeInformationInCar(GetCarById(numberID));
+            UpdateCarsToDb(localDatabase);
         }
 
         public String ShowAllCars()
