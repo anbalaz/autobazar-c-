@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repositry\CarBrandRepository.cs" />
+    <Compile Include="Repositry\CarRepository.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="AutobazarManager.cs" />
     <Compile Include="Car.cs" />
@@ -58,6 +60,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Repositry\CarTypeRepository.cs" />
+    <Compile Include="Repositry\FuelRepository.cs" />
+    <Compile Include="Repositry\IRepository.cs" />
+    <Compile Include="Repositry\TownRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

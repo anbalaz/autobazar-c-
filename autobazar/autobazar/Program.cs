@@ -1,5 +1,6 @@
 ﻿using autobazar.Enums;
 using autobazar.Properties;
+using autobazar.Repositry;
 using System;
 using System.Collections.Generic;
 
@@ -10,9 +11,15 @@ namespace autobazar
     {
         static void Main(string[] args)
         {
-            AutobazarManager bazar = new AutobazarManager("dbCars.txt");
 
-            bazar.RunTheAutobazar();
+            CarRepository carRepository = new CarRepository();
+            carRepository.GetListOfCars();
+
+
+
+            //AutobazarManager bazar = new AutobazarManager("dbCars.txt");
+
+            //bazar.RunTheAutobazar();
             Console.ReadLine();
         }
     }
